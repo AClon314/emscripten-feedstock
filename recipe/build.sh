@@ -15,6 +15,12 @@ chmod -R +x $PREFIX/lib/emscripten-$PKG_VERSION
 
 emcc --generate-config
 
+# try again after emcc gen emar.py
+python $RECIPE_DIR/link_bin.py
+
+# make emcc etc. executable
+chmod -R +x $PREFIX/lib/emscripten-$PKG_VERSION
+
 python $RECIPE_DIR/fix_emscripten_config.py
 
 pushd $PREFIX/lib/emscripten-$PKG_VERSION/

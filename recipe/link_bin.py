@@ -25,7 +25,12 @@ else:
         # get binary
         bin_name = f[:-3]  # cut .py
         print("Linking up ", bin_name)
-        if os.path.exists(bin_name):
-            fname = os.path.basename(bin_name)
-            dest_file = os.path.join(prefix, 'bin', fname)
+        fname = os.path.basename(bin_name)
+        dest_file = os.path.join(prefix, 'bin', fname)
+        if os.path.exists(bin_name) and not os.path.exists(dest_file):
             os.symlink(f, dest_file)
+        
+        # fix FileNotFoundError: [Errno 2] No such file or directory: 'lib/emscripten-4.0.*/emar'
+        if not os.path.exists(bin_name):
+            print("link", f, bin_name)
+            os.symlink(f, bin_name)
