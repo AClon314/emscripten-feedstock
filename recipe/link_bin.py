@@ -32,5 +32,4 @@ else:
         
         # fix FileNotFoundError: [Errno 2] No such file or directory: 'lib/emscripten-4.0.*/emar'
         if not os.path.exists(bin_name):
-            print("link", f, bin_name)
             os.symlink(f, bin_name)
