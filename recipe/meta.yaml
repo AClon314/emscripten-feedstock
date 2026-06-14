@@ -1,6 +1,6 @@
 # TODO: check what LLVM hash emscripten requires later on
 {% set version = "4.0.22" %}
-{% set llvm_version = "21" %}
+{% set llvm_version = "22" %}
 
 # we just use a version here; doesn't seem to have much impact
 {% set min_nodejs = "20" %}
@@ -29,7 +29,7 @@ requirements:
   host:
     # Each emscripten version expects a particular version of binaryen.
     # If the binaryen version is different, emscripten issues a warning.
-    - binaryen  117.*
+    - binaryen 125.*
     - lld {{ llvm_version }}.*
     - clang {{ llvm_version }}.*
     - clangxx {{ llvm_version }}.*
