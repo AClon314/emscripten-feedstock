@@ -16,6 +16,12 @@ chmod -R +x $PREFIX/lib/emscripten-$PKG_VERSION
 
 $PREFIX/bin/emcc --generate-config
 
+# emcc may materialize additional entrypoints such as emar during config generation
+python $RECIPE_DIR/link_bin.py
+
+# make emcc etc. executable again after relinking
+chmod -R +x $PREFIX/lib/emscripten-$PKG_VERSION
+
 python $RECIPE_DIR/fix_emscripten_config.py
 
 pushd $PREFIX/lib/emscripten-$PKG_VERSION/
